@@ -13,6 +13,13 @@ namespace ChessLogic
         {
             get;
         }
+        private static readonly Direction[] dirs = new Direction[]
+        {
+            Direction.North,
+            Direction.South,
+            Direction.East,
+            Direction.West,
+        };
         public Rook (Player color)
         {
             Color = color;
@@ -22,6 +29,10 @@ namespace ChessLogic
             Rook copy = new Rook(Color);
             copy.Hasmooved = Hasmooved;
             return copy;
+        }
+        public override IEnumerable<Move> GetMoves(Position from, Board board)
+        {
+            return MovePositionsInDirs(from, board, dirs).Select(to => new Normal(from, to));
         }
     }
 }
