@@ -16,7 +16,7 @@ namespace ChessLogic
         { 
             get;
         }
-        public bool Hasmooved 
+        public bool Hasmoved 
         { 
             get; 
             set; 
