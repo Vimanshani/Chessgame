@@ -27,7 +27,7 @@ namespace ChessLogic
         public override Piece Copy()
         {
             Rook copy = new Rook(Color);
-            copy.Hasmooved = Hasmooved;
+            copy.Hasmoved = Hasmoved;
             return copy;
         }
         public override IEnumerable<Move> GetMoves(Position from, Board board)

@@ -21,7 +21,7 @@ namespace ChessLogic
             Piece piece = board[FromPos];
             board[ToPos] = piece;
             board[FromPos] = null;
-            piece.Hasmooved = true;
+            piece.Hasmoved = true;
         }
 
     }

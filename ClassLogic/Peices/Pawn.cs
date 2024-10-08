@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,21 @@ namespace ChessLogic
                     yield return new Normal(from,twoMovePos);
                 }
             }
+        }
+        private IEnumerable<Move> DiagonalMoves(Position from, Board board)
+        { 
+          foreach(Direction dir in new Direction[] {Direction.West, Direction.East} )
+            {
+                Position to = from + forward + dir;
+                if(CanCaptureAt(to, board))
+                {
+                    yield return new Normal(from,to);
+                }
+            }
+        }
+        public override IEnumerable<Move> GetMoves(Position from,Board board)
+        {
+            return ForwardMoves(from, board).Concat(DiagonalMoves(from,board));
         }
     }
 }
