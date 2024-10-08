@@ -34,7 +34,7 @@ namespace ChessLogic
             copy.Hasmoved = Hasmoved;
             return copy;
         }
-        private IEnumerable<Position> MovePosition(Position from, Board board)
+        private IEnumerable<Position> MovePositions(Position from, Board board)
         {
            foreach (Direction dir in dirs)
             {
@@ -50,7 +50,13 @@ namespace ChessLogic
             }
         }
 
-        public override IEnumerable<Move>
+        public override IEnumerable<Move> GetMoves(Position from, Board board)
+        {
+            foreach (Position to in MovePositions(from, board))
+            {
+               yield return new Normal(from, to);
+            }
+        }
 
     }
 }
