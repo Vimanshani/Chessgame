@@ -18,7 +18,7 @@ namespace ChessUI
     public partial class MainWindow : Window
     {
         private readonly Image[,] pieceImages = new Image[8, 8];
-        private readonly Rectangle[,] highlight = new Rectangle[8,8];  
+        private readonly Rectangle[,] highlights = new Rectangle[8,8];  
         private readonly Dictionary<Position, Move> MoveCache = new Dictionary<Position, Move>();
 
         private GameState gameState;
@@ -39,7 +39,12 @@ namespace ChessUI
                    Image image= new Image();
                    pieceImages[r,c] = image;
                    PieceGrid.Children.Add(image);
+
+
+                    Rectangle highlight = new Rectangle();
+                    highlights[r, c] = highlight;
                 }
+               
 
             }
         }
