@@ -51,5 +51,10 @@ namespace ChessUI
                 }
             }
         }
+
+        private void BoadGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

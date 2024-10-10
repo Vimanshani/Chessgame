@@ -14,7 +14,7 @@ namespace ChessLogic
     }
     public static class Playerextension
     {
-       public static Player Opponent(Player player)
+     public static Player Opponent(Player player)
         {
             switch (player)
             {
