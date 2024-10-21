@@ -12,9 +12,9 @@ namespace ChessLogic
         White,
         Black
     }
-    public static class Playerextension
+    public static class PlayerExtension
     {
-     public static Player Opponent(Player player)
+     public static Player Opponent(this Player player)
         {
             switch (player)
             {

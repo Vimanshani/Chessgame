@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,5 +88,22 @@ namespace ChessLogic
         {
             return PiecePosition().Where(pos => this[pos].Color == player);
         }
+        public bool IsInCheck(Player player)
+        {
+            return PiecePositionsFor(player.Opponent()).Any(pos =>
+            {
+                Piece piece = this[pos];
+                return piece.CanCaptureOpponentKing(pos, this);
+            });
+        }
+        public Board Copy()
+        {
+            Board copy = new Board();
+            foreach (Position pos in PiecePosition())
+            {
+                copy[pos]= this[pos].Copy();
+            }
+            return copy;
+        }    
     }
 }
