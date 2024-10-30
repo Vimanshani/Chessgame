@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Background="#101010">
  <Viewbox>
-   <Grid x:Name="BoadGrid" Width="600" Height="600" MouseDown="BoadGrid_MouseDown">
+   <Grid x:Name="BoadGrid" Width="600" Height="600" MouseDown="BoardGrid_MouseDown">
       <Grid.Background>
           <ImageBrush ImageSource="Assests/Board.png"/>
       </Grid.Background>
@@ -20,7 +20,8 @@
       <UniformGrid x:Name="PieceGrid" Rows="8" Columns="8" RenderOptions.BitmapScalingMode="HighQuality">
                 
       </UniformGrid>
-   </Grid>
+            <ContentControl x:Name="MenuContainer"/>
+    </Grid>
 </Viewbox>
 </Window>
 

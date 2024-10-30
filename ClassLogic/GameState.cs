@@ -8,7 +8,10 @@ namespace ChessLogic
 {
     public  class GameState
     {
-         public Board Board
+        private Player white;
+        private Board board;
+
+        public Board Board
         {
             get;
         }
@@ -23,6 +26,13 @@ namespace ChessLogic
            Board = board;
            CurrentPlayer = player;
         }
+
+        public GameState(Player white, Board board)
+        {
+            this.white = white;
+            this.board = board;
+        }
+
         public IEnumerable<Move> LegalMovesForPiece(Position pos)
         {
             if (Board.IsEmpty(pos) || Board[pos].Color != CurrentPlayer)
