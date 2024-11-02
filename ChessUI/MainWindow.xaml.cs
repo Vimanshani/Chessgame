@@ -70,7 +70,7 @@ namespace ChessUI
             {
                 return; 
             }
-            Point point = e.GetPosition(BoadGrid);
+            Point point = e.GetPosition(BoardGrid);
             Position pos = ToSquarePosition(point);
             if (selectedPos != null)
             {
@@ -83,7 +83,7 @@ namespace ChessUI
         }
         private Position ToSquarePosition(Point point)
         {
-            double squareSize = BoadGrid.ActualWidth / 8;
+            double squareSize = BoardGrid.ActualWidth / 8;
             int row = (int)(point.Y / squareSize);
             int col = (int)(point.X / squareSize);
             return new Position(row, col);

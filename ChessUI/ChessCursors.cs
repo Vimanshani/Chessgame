@@ -13,10 +13,10 @@ namespace ChessUI
     public static class ChessCursors
     {
         public static readonly Cursor WhiteCursor = LoadCursor("Assests/CursorW.cur");
-        public static readonly Cursor BlackCursor = LoadCursor("Assets/CursorB.cur");
+        public static readonly Cursor BlackCursor = LoadCursor("Assests/CursorB.cur");
        private static Cursor LoadCursor(string filepath)
        {
-           Stream stream = Application.GetResourceStream(new Uri(filepath,UriKind.Relative)).Stream;
+            Stream stream = Application.GetResourceStream(new Uri(filepath, UriKind.Relative)).Stream;
            return new Cursor(stream,true);
        }
     }
