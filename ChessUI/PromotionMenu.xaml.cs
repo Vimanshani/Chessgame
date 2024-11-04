@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,29 +21,34 @@ namespace ChessUI
     /// </summary>
     public partial class PromotionMenu : UserControl
     {
-        public PromotionMenu()
+        public event Action<PieceType> PieceSelected;
+        public PromotionMenu(Player player)
         {
             InitializeComponent();
+            QueenImg.Source = Images.GetImage(player, PieceType.queen);
+            BishopImg.Source = Images.GetImage(player, PieceType.bishop);
+            RookImg.Source = Images.GetImage(player,PieceType.rook);
+            KnightImg.Source = Images.GetImage(player,PieceType.knight);
         }
 
         private void QueenImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            PieceSelected?.Invoke(PieceType.queen);
         }
 
         private void BishopImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            PieceSelected?.Invoke(PieceType.bishop);
         }
 
         private void RookImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            PieceSelected?.Invoke(PieceType.rook);
         }
 
         private void KnightImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            PieceSelected?.Invoke(PieceType.knight);
         }
     }
 }
