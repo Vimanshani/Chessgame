@@ -28,6 +28,41 @@ namespace ChessLogic
         {
             Color = color;
         }
+
+        private static bool IsUnmovedRook(Position pos, Board board)
+        {
+            if(board.IsEmpty(pos))
+            {
+                return false;
+            }
+            Piece piece = board[pos];
+            return piece.Type == PieceType.rook && !piece.Hasmoved;
+        }
+        private static bool AllEmpty(IEnumerable<Position> positions, Board board)
+        {
+            return positions.All(pos=> board.IsEmpty(pos));
+        }
+        private bool CanCastleKingSide(Position from, Board board)
+        {
+            if (Hasmoved)
+            {
+                return false;
+            }
+            Position rookPos = new Position(from.Raw, 7);
+            Position[] betweenPositions = new Position[] { new(from.Raw, 5), new(from.Raw, 6) };
+
+            return IsUnmovedRook(rookPos, board) && AllEmpty(betweenPositions, board); 
+        }
+        private bool CanCastleQueenSide(Position from, Board board)
+        {
+            if (Hasmoved)
+            {
+                return false;
+            }
+            Position rookPos = new Position(from.Raw, 0);
+            Position[] betweenPositions = new Position[] { new(from.Raw, 1), new(from.Raw, 2), new(from.Raw, 3) };
+            return IsUnmovedRook(rookPos, board) && AllEmpty(betweenPositions, board);
+        }
         public override Piece Copy()
         {
             King copy = new King(Color);
@@ -55,6 +90,14 @@ namespace ChessLogic
             foreach (Position to in MovePositions(from, board))
             {
                yield return new Normal(from, to);
+            }
+            if(CanCastleKingSide(from, board))
+            {
+                yield return new Castle(MovingWay.CastleKS, from);
+            }
+            if (CanCastleQueenSide(from, board))
+            {
+                yield return new Castle(MovingWay.CastleQS, from);
             }
         }
         public override bool CanCaptureOpponentKing(Position from, Board board)

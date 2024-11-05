@@ -8,7 +8,10 @@ namespace ChessLogic
 {
     public class Normal:Move
     {
-       public override MovingWay Way => MovingWay.Normal;
+        private Direction rookFromPos;
+        private Direction rookToPos;
+
+        public override MovingWay Way => MovingWay.Normal;
         public override Position FromPos { get; }
         public override Position ToPos { get; }
         public Normal(Position From , Position To) 
@@ -16,6 +19,13 @@ namespace ChessLogic
             FromPos = From;
             ToPos = To;
         }
+
+        public Normal(Direction rookFromPos, Direction rookToPos)
+        {
+            this.rookFromPos = rookFromPos;
+            this.rookToPos = rookToPos;
+        }
+
         public override void Execute(Board board)
         {
             Piece piece = board[FromPos];

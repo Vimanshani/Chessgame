@@ -38,5 +38,10 @@ namespace ChessLogic
         {
             return new Direction(scalar * dir.Rawdelta, scalar * dir.Columndelta);
         }
+
+        public static implicit operator Direction(Position v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
