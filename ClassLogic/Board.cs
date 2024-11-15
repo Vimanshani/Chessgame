@@ -5,12 +5,19 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ChessLogic
 {
     public class Board
     {
         private readonly Piece[,] pieces = new Piece[8, 8];
+
+        private readonly Dictionary<Player, Position> pawnSkipPositions = new Dictionary<Player, Position>
+        {
+            {Player.White, null },
+            {Player.Black, null }
+        };
         public Piece this[int raw, int col]
         {
             get
@@ -26,6 +33,14 @@ namespace ChessLogic
         {
             get {return this[pos.Raw , pos.Column]; }
             set { this[pos.Raw, pos.Column]= value; }
+        }
+        public Position GetPawnSkipPosition(Player player)
+        {
+            return pawnSkipPositions[player];
+        }
+        public void SetPawnSkipPosition(Player player, Position pos)
+        {
+            pawnSkipPositions[player] = pos;
         }
 
         public static Board Initial()
