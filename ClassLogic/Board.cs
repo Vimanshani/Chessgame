@@ -119,6 +119,52 @@ namespace ChessLogic
                 copy[pos]= this[pos].Copy();
             }
             return copy;
-        }    
+        }
+        public Counting CountPieces()
+        {
+            Counting counting = new Counting();
+            foreach (Position pos in PiecePosition())
+            {
+                Piece piece = this[pos];
+                counting.Increment(piece.Color, piece.Type);
+            }
+            return counting;
+        }
+        public bool InsufficientMaterial()
+        {
+            Counting counting=  CountPieces();
+            return IsKingVKing(counting)||IsKingBishopVKing(counting)|| IsKingKnightVKing(counting) || IsKingBishopVKingBishop(counting);
+        }
+        private static bool IsKingVKing(Counting counting)
+        {
+            return counting.TotalCount == 2;
+        }
+        private static bool IsKingBishopVKing(Counting counting)
+        {
+            return counting.TotalCount == 3 && (counting.White(PieceType.bishop) == 1 || counting.Black(PieceType.bishop) == 1 );
+        }
+        private static bool IsKingKnightVKing(Counting counting)
+        {
+            return counting.TotalCount == 3 && (counting.White(PieceType.knight) == 1 || counting.Black(PieceType.knight) == 1);
+        }
+        private  bool IsKingBishopVKingBishop(Counting counting)
+        {
+            if (counting.TotalCount != 4)
+            {
+                return false;
+            }
+            if (counting.White(PieceType.bishop) != 1 || counting.Black(PieceType.bishop) != 1)
+            {
+               return false ;
+            }
+            Position wBishopPos = FindPiece(Player.White, PieceType.bishop);
+            Position bBishopPos = FindPiece(Player.Black, PieceType.bishop);
+
+            return wBishopPos.Squarecolor() == bBishopPos.Squarecolor();
+        }
+        private Position FindPiece(Player color, PieceType type)
+        {
+            return PiecePositionsFor(color).First(pos => this[pos].Type == type);
+        }
     }
 }

@@ -64,12 +64,21 @@ namespace ChessLogic
         {
             if(!AllLegalMovesFor(CurrentPlayer).Any())
             {
-                Result = Result.Win(CurrentPlayer.Opponent());
+                if(Board.IsInCheck(CurrentPlayer))
+                {
+                    Result = Result.Win(CurrentPlayer.Opponent());
+                }
+                else
+                {
+                    Result = Result.Draw(EndReason.Stalemate);
+                }
+
             }
-            else
+            else if(Board.InsufficientMaterial())
             {
-                Result = Result.Draw(EndReason.Stalemate);
+                Result = Result.Draw(EndReason.InsufficientMaterial);
             }
+           
         }
         public bool IsGameOver()
         {
