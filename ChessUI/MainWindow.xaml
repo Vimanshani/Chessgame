@@ -11,7 +11,7 @@
         Background="#101010"
         KeyDown="Window_KeyDown">
  <Viewbox>
-   <Grid x:Name="BoardGrid" Width="600" Height="600" MouseDown="BoardGrid_MouseDown">
+      <Grid x:Name="BoardGrid" Width="600" Height="600" MouseDown="BoardGrid_MouseDown">
       <Grid.Background>
           <ImageBrush ImageSource="Assests/Board.png"/>
       </Grid.Background>

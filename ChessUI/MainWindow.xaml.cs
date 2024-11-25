@@ -72,7 +72,7 @@ namespace ChessUI
             }
             Point point = e.GetPosition(BoardGrid);
             Position pos = ToSquarePosition(point);
-            if (selectedPos != null)
+            if (selectedPos == null)
             {
                 OnFromPositionSelected(pos);
             }

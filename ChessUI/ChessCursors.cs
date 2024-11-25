@@ -17,7 +17,7 @@ namespace ChessUI
        private static Cursor LoadCursor(string filepath)
        {
             Stream stream = Application.GetResourceStream(new Uri(filepath, UriKind.Relative)).Stream;
-           return new Cursor(stream,true);
+            return new Cursor(stream,true);
        }
     }
 }
